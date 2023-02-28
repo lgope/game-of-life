@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, Fragment } from "react";
 import { CELL_SIZE, getActiveCells, getEmptyBoard } from "../utils";
 import GameAction from "./GameAction";
 import LiveCell from "./LiveCell";
@@ -18,6 +18,7 @@ const GameBoard = () => {
   const boardRef = useRef(null);
   const timerRef = useRef(null);
   let gameBoard = useRef(null);
+  let generationCount = useRef(0);
 
   useEffect(() => {
     gameBoard.current = getEmptyBoard(rows, cols);
@@ -52,6 +53,8 @@ const GameBoard = () => {
     if (x >= 0 && x <= cols && y >= 0 && y <= rows) {
       gameBoard.current[y][x] = !gameBoard.current[y][x];
     }
+
+    generationCount.current = 0;
 
     setActiveCells(getActiveCells(rows, cols, gameBoard.current));
   };
@@ -102,6 +105,8 @@ const GameBoard = () => {
     }
 
     gameBoard.current = newBoard;
+    generationCount.current += 1;
+
     setActiveCells(getActiveCells(rows, cols, gameBoard.current));
   };
 
@@ -125,13 +130,15 @@ const GameBoard = () => {
   const handleOnClear = () => {
     if (isStart) setIsStart(false);
 
+    generationCount.current = 0;
+
     clearTimeout(timerRef.current);
     gameBoard.current = getEmptyBoard(rows, cols);
     setActiveCells([]);
   };
 
   return (
-    <>
+    <Fragment>
       <div className="game-container">
         <div
           className="game-board"
@@ -148,6 +155,8 @@ const GameBoard = () => {
             <LiveCell x={cell.x} y={cell.y} key={`${cell.x},${cell.y}`} />
           ))}
         </div>
+
+        <div className="generation-count"><p>Generation Count: {generationCount.current}</p></div>
       </div>
 
       <GameAction
@@ -159,7 +168,7 @@ const GameBoard = () => {
         isStart={isStart}
         onStop={handleStop}
       />
-    </>
+    </Fragment>
   );
 };
 

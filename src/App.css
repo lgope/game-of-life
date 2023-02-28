@@ -34,6 +34,20 @@ body {
     linear-gradient(90deg, #333 1px, transparent 1px);
 }
 
+.generation-count {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 146px;
+  right: 40px;
+  height: 70px;
+  padding: 6px 15px;
+  border-radius: 10px;
+  color: white;
+  background-color: #727272;
+}
+
 .live-cell {
   background: #ccc;
   position: absolute;
