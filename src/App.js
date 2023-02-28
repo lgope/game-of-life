@@ -1,12 +1,12 @@
+import { Fragment } from "react";
 import "./App.css";
 import Header from "./Components/Header";
-import GameBoard from "./Components/GameBoard";
-import { Fragment } from "react";
+import Game from "./Components/Game";
 
 const App = () => (
   <Fragment>
     <Header />
-    <GameBoard />
+    <Game />
   </Fragment>
 );
 
