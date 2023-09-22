@@ -1,5 +1,10 @@
 import React, { useState, useRef, useEffect, Fragment } from "react";
-import { CELL_SIZE, getActiveCells, getEmptyBoard } from "../utils";
+import {
+  CELL_SIZE,
+  DEFAULT_ACTIVE_CELLS,
+  getActiveCells,
+  getEmptyBoard,
+} from "../utils";
 import GameAction from "./GameAction";
 import GameBoard from "./GameBoard";
 
@@ -22,7 +27,18 @@ const Game = () => {
 
   useEffect(() => {
     gameBoard.current = getEmptyBoard(rows, cols);
-  }, [rows, cols]);
+
+    // default active cells functionality
+    if (cellNumber >= 50) {
+      for (let i = 0; i < DEFAULT_ACTIVE_CELLS.length; i++) {
+        const y = DEFAULT_ACTIVE_CELLS[i].y,
+          x = DEFAULT_ACTIVE_CELLS[i].x;
+        gameBoard.current[y][x] = !gameBoard.current[y][x];
+
+        setActiveCells(DEFAULT_ACTIVE_CELLS);
+      }
+    }
+  }, [rows, cols, cellNumber]);
 
   const handleOnCellNumberInput = (num) => {
     setCellNumber(num);

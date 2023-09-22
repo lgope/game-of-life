@@ -9,7 +9,7 @@ body {
 
 .game-header {
   display: flex;
-  height: 90px;
+  height: 60px;
   flex-direction: column;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -63,9 +63,12 @@ body {
 
 button,
 .cell-input {
-  margin-left: 4px;
-  min-width: 235px;
+  display: flex;
+  margin: 4px;
+  min-width: 200px;
   height: 40px;
+  align-items: center;
+  text-align: center;
   padding: 0 30px;
   border-radius: calc(40px * 0.5);
   border: 2px solid transparent;
@@ -76,4 +79,19 @@ button,
   box-shadow: 2px 2px 3px hsl(0deg 0% 0% / 30%);
   outline: none;
   transition: all 250ms ease;
+  justify-content: center;
+  cursor: pointer;
+}
+
+button svg {
+  fill: white;
+  width: calc(40px * 0.7);
+  height: calc(40px * 0.7);
+  margin-right: calc(40px * 0.2);
+}
+
+button:hover,
+.cell-input:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 0 3px 9px 0;
+  transform: translateY(-2px);
 }
