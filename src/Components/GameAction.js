@@ -1,8 +1,6 @@
 import React from "react";
 import { NextSvgIcon, ResetSvgIcon, StartSvgIcon, StopSvgIcon } from "../utils";
 
-
-
 const GameAction = ({
   onStart,
   onClear,
