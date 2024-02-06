@@ -140,8 +140,12 @@ const Game = () => {
   };
 
   const handleOnStart = () => {
-    setIsStart(true);
-    runSimulation();
+    if (activeCells.length) {
+      setIsStart(true);
+      runSimulation();
+    } else {
+      alert("Please select some cells to start the game");
+    }
   };
 
   const handleOnClear = () => {
